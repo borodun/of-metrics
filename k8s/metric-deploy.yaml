@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: of-metrics
+  labels:
+    app: of-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: of-metrics
+  template:
+    metadata:
+      labels:
+        app: of-metrics
+    spec:
+      containers:
+      - name: of-metrics
+        image: borodun/of-metrics
+        env:
+          - name: mongo_uri
+            value: mongodb://borodun-rw:brd01rtm@10.10.10.169:27017/faas-measurementsdb?authSource=faas-measurements
+
